@@ -104,4 +104,5 @@ The important bit is this go template instruction:
 ```
 
 Between these you can simple call the keys from the json, so `name` in dict `user` becomes simple `{{ .user.name }}`.    
-Neato, isn't it?
+Neato, isn't it? If you want to know how it looks like, head over to my [website](https://tuxstash.de/) and scroll down
+to the footer.
