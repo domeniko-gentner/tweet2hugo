@@ -21,7 +21,7 @@ class mail:
         if system().lower() == "windows":
             path = Path("mail_credentials.json")
         else:
-            path = Path("/etc/twpng/mail_credentials.json")
+            path = Path("/etc/tw2hugo/mail_credentials.json")
 
         with path.open("r") as fp:
             credentials = j_load(fp)

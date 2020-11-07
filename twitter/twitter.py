@@ -24,7 +24,7 @@ class twitter:
         if system().lower() == "windows":
             self.path = Path("bearer.json")
         else:
-            self.path = Path("/etc/twpng/bearer.json")
+            self.path = Path("/etc/tw2hugo/twitter.json")
 
         try:
             with self.path.open('r') as fp:
@@ -37,10 +37,13 @@ class twitter:
     def handle(self):
         return self.credentials['twitter-handle']
 
+    def output_location(self):
+        return self.credentials['output-location']
+
     def get_latest_tweet(self) -> Union[str, None]:
         try:
             get_url = f"https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" \
-                      f"{self.credentials['twitter-handle']}&count=1&trim_user=1"
+                      f"{self.credentials['twitter-handle']}&count=1&tweet_mode=extended"
 
             header = {
                 "Authorization": f"Bearer {self.credentials['bearer']}"

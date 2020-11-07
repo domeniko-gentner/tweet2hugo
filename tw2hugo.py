@@ -6,11 +6,20 @@
 #  * _repo    : https://git.tuxstash.de/gothseidank/tweet2png
 #  * _license : This project is under MIT License
 #  *********************************************************************************/
-from mail import mail
-from painter import painter
 from twitter import twitter
 from sys import exit
+from platform import system
+import json
 
 twitter = twitter()
-painter(twitter.get_latest_tweet(), twitter.handle())
+tweet = twitter.get_latest_tweet()
+handle = twitter.handle()
+
+if system().lower() == "windows":
+    with open('latest_tweet.json', 'w') as fp:
+        json.dump(tweet, fp, indent=4, sort_keys=True)
+if system().lower() == "linux":
+    with open('/home/git/tuxstash.de/data/latest_tweet.json', 'w') as fp:
+        json.dump(tweet, fp, indent=4, sort_keys=True)
+
 exit(0)
