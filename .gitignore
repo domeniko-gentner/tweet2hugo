@@ -4,3 +4,4 @@ bearer.json
 mail_credentials.json
 test.*
 __pycache__/
+*.json
