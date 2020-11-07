@@ -27,7 +27,7 @@ class mail:
             credentials = j_load(fp)
 
         message = MIMEText(what, _charset='utf8')
-        message['Subject'] = "twpng error report"
+        message['Subject'] = "Tweet2Hugo alarm report"
         message['From'] = credentials['email-sendfrom']
         message['To'] = credentials['email-sendto']
 
