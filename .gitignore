@@ -3,3 +3,5 @@ venv
 mail/__pycache__
 bearer.json
 mail_credentials.json
+painter/__pycache__
+test.png

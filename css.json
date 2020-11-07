@@ -1,0 +1,20 @@
+{
+  "dimensions": {
+    "x": 600,
+    "y": 300
+  },
+  "background": {
+    "r": 57,
+    "g": 63,
+    "b": 77
+  },
+  "text": {
+    "font": "font/open-sans-v18-latin-regular.ttf",
+    "size": 18,
+    "color": {
+      "r": 255,
+      "g": 255,
+      "b": 255
+    }
+  }
+}
