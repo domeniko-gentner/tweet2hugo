@@ -22,7 +22,7 @@ class twitter:
         self.credentials = str()
 
         if system().lower() == "windows":
-            self.path = Path("bearer.json")
+            self.path = Path("twitter.json")
         else:
             self.path = Path("/etc/tw2hugo/twitter.json")
 
@@ -51,6 +51,9 @@ class twitter:
 
             r = requests.get(url=get_url, headers=header)
             r.raise_for_status()
+            excluded = r.json()[0]['entities']['hashtags'][0]['text']
+            if excluded in self.credentials['exclude']:
+                exit(0)
             return r.json()[0]
 
         except Exception as e:
