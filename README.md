@@ -4,11 +4,20 @@ This python script fetches the latest tweet of a public user from twitter and ou
 directory. This script expects two json files in `/etc/tw2hugo`, which should have `chmod 700` for a non-privileged 
 user and no rights for the group. All files should have `chmod 400`.
 
+## Setup
+
+This package depends only on the pip package "requests", which I recommend to simply install globally with 
+`pip3 install requests`. You can also use the provided pipfile and install all dependencies into a virtual environment 
+with `pipenv lock`, however, you will need to activate that environment in your automation script.
+
+Next, you will need to install the configuration files below:
+
 ## Needed configuration files
 
 /etc/tw2hugo/mail_credentials.json
 ```
 {
+  "enable": true,
   "smtp-server": "mail server",
   "smtp-port": 465,
   "email-user": "username for smtp",
@@ -23,14 +32,14 @@ user and no rights for the group. All files should have `chmod 400`.
 {
     "bearer": "bearer token of your twitter app",
     "twitter-handle": "twitter handle",
-    "output-location": "hugo base dir/data/latest_tweet.json"
+    "output-location": "/hugo/project/directory/data/latest_tweet.json"
 }
 ```
 
 ## Why does it need email credentials?
 
 The script has the specialty that sends an email when something goes wrong, so I am notifed and can fix the issue.
-If you don't want that, simply open `mail/mail.py` and replace everyting in the init function with a simple `pass`.
+If you don't want that, replace `enable: true` in the `mail_credentials.json` with `false`.
 
 ## How does it integrate into Hugo?
 

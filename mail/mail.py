@@ -26,6 +26,9 @@ class mail:
         with path.open("r") as fp:
             credentials = j_load(fp)
 
+        if not credentials['enable']:
+            return
+
         message = MIMEText(what, _charset='utf8')
         message['Subject'] = "Tweet2Hugo alarm report"
         message['From'] = credentials['email-sendfrom']
