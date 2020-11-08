@@ -1,0 +1,7 @@
+{
+    "bearer": "bearer token from twitter",
+    "twitter-handle": "GothSeiDank",
+    "output-location": "/path/to/hugo/data/latest_tweet.json",
+    "exclude": ["1", "2"]
+}
+

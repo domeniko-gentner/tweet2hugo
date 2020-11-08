@@ -1,7 +1,9 @@
 ﻿.idea
 venv
-bearer.json
+twitter.json
 mail_credentials.json
 test.*
 __pycache__/
 *.json
+!/etc/tw2hugo/twitter.json
+!/etc/tw2hugo/mail_credentials.json
