@@ -116,7 +116,7 @@ Between these you can simple call the keys from the json, so `name` in dict `use
 Neato, isn't it? If you want to know how it looks like, head over to my [website](https://tuxstash.de/) and scroll down
 to the footer.
 
-# Excluding hashtags
+## Excluding hashtags
 
 Sometimes you do not want a tweet to decorate the hard work you call your web home. You can add the following to `twitter.json`
 to exclude certain hashtags:
