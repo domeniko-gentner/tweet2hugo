@@ -32,7 +32,11 @@ Next, you will need to install the configuration files below:
 {
     "bearer": "bearer token of your twitter app",
     "twitter-handle": "twitter handle",
-    "output-location": "/hugo/project/directory/data/latest_tweet.json"
+    "output-location": "/hugo/project/directory/data/latest_tweet.json",
+    "exclude": [
+        "dontincludethishastag",
+        "politics"
+    ]
 }
 ```
 
@@ -76,7 +80,10 @@ I build the template using a [partial template](https://gohugo.io/templates/part
 
         <div class="level mb-0">
             <span class="level-left">
-                <a target="_blank" rel="nofollow noreferrer noopener" href="https://twitter.com/{{.user.name}}/status/{{.id_str}}">{{ slicestr .created_at 0 20 }}</a>
+                <a target="_blank" 
+                   rel="nofollow noreferrer noopener" 
+                   href="https://twitter.com/{{.user.name}}/status/{{.id_str}}">{{ slicestr .created_at 0 20 }}
+                </a>
             </span>
             <span class="level-right">
                via {{ .source | safeHTML }}
@@ -112,14 +119,13 @@ The important bit is this go template instruction:
 {{ end }}
 ```
 
-Between these you can simple call the keys from the json, so `name` in dict `user` becomes simple `{{ .user.name }}`.    
+Between these you can call the keys from the json, so `name` in dict `user` becomes simply `{{ .user.name }}`.    
 Neato, isn't it? If you want to know how it looks like, head over to my [website](https://tuxstash.de/) and scroll down
 to the footer.
 
 ## Excluding hashtags
 
-Sometimes you do not want a tweet to decorate the hard work you call your web home. You can add the following to `twitter.json`
-to exclude certain hashtags:
+Sometimes you do not want a tweet to decorate the hard work you call your web home. You can edit the following in `twitter.json` to exclude certain hashtags:
 
 ```
 "exclude": [
