@@ -51,9 +51,14 @@ class twitter:
 
             r = requests.get(url=get_url, headers=header)
             r.raise_for_status()
-            excluded = r.json()[0]['entities']['hashtags'][0]['text']
-            if excluded in self.credentials['exclude']:
-                exit(0)
+            try:
+                excluded = r.json()[0]['entities']['hashtags'][0]['text']
+                if excluded in self.credentials['exclude']:
+                    exit(0)
+            except IndexError:
+                # No hashtags, that's fine
+                pass
+
             return r.json()[0]
 
         except Exception as e:
