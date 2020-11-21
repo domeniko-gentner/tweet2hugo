@@ -19,7 +19,7 @@ if system().lower() == "windows":
     with open('latest_tweet.json', 'w') as fp:
         json.dump(tweet, fp, indent=4, sort_keys=True)
 if system().lower() == "linux":
-    with open('/home/git/tuxstash.de/data/latest_tweet.json', 'w') as fp:
+    with open(twitter.output_location(), 'w') as fp:
         json.dump(tweet, fp, indent=4, sort_keys=True)
 
 exit(0)
