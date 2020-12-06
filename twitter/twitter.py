@@ -53,18 +53,28 @@ class twitter:
             r.raise_for_status()
             try:
                 # Get hashtag list
-                hashtag = r.json()[0]['entities']['hashtags'][0]['text']
+                tweet_tags = r.json()[0]['entities']['hashtags']
+                hashtags = self.credentials['hashtags']
+                found_not_allowed_tag = False
 
-                # It's  a blocklist and the hashtag is found
-                if self.credentials['is_blocklist'] and hashtag in self.credentials['hashtags']:
-                    exit(0)
+                for each in tweet_tags:
+                    # print(each)
+                    # It's  a blocklist and the hashtag is found
+                    if self.credentials['is_blocklist'] and each['text'] in hashtags:
+                        found_not_allowed_tag = True
+                        break
 
-                # It is a list of allowed hashtags and the hashtag was not found
-                if not self.credentials['is_blocklist'] and hashtag not in self.credentials['hashtags']:
-                    exit(0)
+                    # It is a list of allowed hashtags and the hashtag was found
+                    if not self.credentials['is_blocklist'] and each['text'] in hashtags:
+                        found_not_allowed_tag = False
+                        break
 
-                if self.credentials['omit_replies'] and r.json()[0]['in_reply_to_status_id']:
-                    # Tweet is a reply
+                    if self.credentials['omit_replies'] and r.json()[0]['in_reply_to_status_id']:
+                        # Tweet is a reply
+                        found_not_allowed_tag = True
+                        break
+
+                if found_not_allowed_tag:
                     exit(0)
 
             except IndexError:
