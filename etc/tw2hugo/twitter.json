@@ -1,7 +1,11 @@
 {
-    "bearer": "bearer token from twitter",
-    "twitter-handle": "GothSeiDank",
-    "output-location": "/path/to/hugo/data/latest_tweet.json",
-    "exclude": ["1", "2"]
+    "bearer": "bearer token of your twitter app",
+    "twitter-handle": "twitter handle",
+    "output-location": "/hugo/project/directory/data/latest_tweet.json",
+    "is_blocklist": true,
+    "hashtags": [
+        "dontincludethishastag",
+        "politics"
+    ],
+    "omit_replies": true
 }
-

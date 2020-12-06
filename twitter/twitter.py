@@ -52,9 +52,21 @@ class twitter:
             r = requests.get(url=get_url, headers=header)
             r.raise_for_status()
             try:
-                excluded = r.json()[0]['entities']['hashtags'][0]['text']
-                if excluded in self.credentials['exclude']:
+                # Get hashtag list
+                hashtag = r.json()[0]['entities']['hashtags'][0]['text']
+
+                # It's  a blocklist and the hashtag is found
+                if self.credentials['is_blocklist'] and hashtag in self.credentials['hashtags']:
                     exit(0)
+
+                # It is a list of allowed hashtags and the hashtag was not found
+                if not self.credentials['is_blocklist'] and hashtag not in self.credentials['hashtags']:
+                    exit(0)
+
+                if self.credentials['omit_replies'] and r.json()[0]['in_reply_to_status_id']:
+                    # Tweet is a reply
+                    exit(0)
+
             except IndexError:
                 # No hashtags, that's fine
                 pass

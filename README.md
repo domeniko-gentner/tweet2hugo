@@ -33,10 +33,12 @@ Next, you will need to install the configuration files below:
     "bearer": "bearer token of your twitter app",
     "twitter-handle": "twitter handle",
     "output-location": "/hugo/project/directory/data/latest_tweet.json",
-    "exclude": [
+    "is_blocklist": true,
+    "hashtags": [
         "dontincludethishastag",
         "politics"
-    ]
+    ],
+    "omit_replies": true
 }
 ```
 
@@ -125,13 +127,18 @@ to the footer.
 
 ## Excluding hashtags
 
-Sometimes you do not want a tweet to decorate the hard work you call your web home. You can edit the following in `twitter.json` to exclude certain hashtags:
+Sometimes you do not want a tweet to decorate the hard work you call your web home. 
+You can edit the following in `twitter.json` to exclude certain hashtags:
 
 ```
+"is_blocklist: true,
 "exclude": [
     "politics"
 ]
 ```
+
+**Note**: If `is_blocklist` is false, then it acts as a list of allowed hashtags and will only output new json
+if the hashtag is found.
 
 You find sample configuration files in the `/etc/` folder in the project root.
 
