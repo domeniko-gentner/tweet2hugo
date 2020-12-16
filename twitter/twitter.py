@@ -59,7 +59,6 @@ class twitter:
                 print(tweet_tags)
 
                 for each in tweet_tags:
-                    print(each)
                     # It's  a blocklist and the hashtag is found
                     if self.credentials['is_blocklist'] and each['text'] in hashtags:
                         found_not_allowed_tag = True
