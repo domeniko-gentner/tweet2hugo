@@ -56,12 +56,14 @@ class twitter:
                 tweet_tags = r.json()[0]['entities']['hashtags']
                 hashtags = self.credentials['hashtags']
                 found_not_allowed_tag = True
+                print(tweet_tags)
 
                 for each in tweet_tags:
+                    print(each)
                     # It's  a blocklist and the hashtag is found
                     if self.credentials['is_blocklist'] and each['text'] in hashtags:
                         found_not_allowed_tag = True
-                        break
+                        continue
 
                     # It is a list of allowed hashtags and the hashtag was found
                     if not self.credentials['is_blocklist'] and each['text'] in hashtags:
@@ -71,7 +73,7 @@ class twitter:
                     # it is a list of allowed hashtags and the hash was not fonud
                     if not self.credentials['is_blocklist'] and not each['text'] in hashtags:
                         found_not_allowed_tag = True
-                        break
+                        continue
 
                 # Is Tweet a reply?
                 if self.credentials['omit_replies'] and r.json()[0]['in_reply_to_status_id']:
