@@ -49,7 +49,7 @@ class twitter:
                 "Authorization": f"Bearer {self.credentials['bearer']}"
             }
 
-            r = requests.get(url=get_url, headers=header)
+            r = requests.get(url=get_url, headers=header, allow_redirects=False)
             r.raise_for_status()
             try:
                 # Get hashtag list
